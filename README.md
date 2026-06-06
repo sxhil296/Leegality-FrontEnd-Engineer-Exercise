@@ -1,75 +1,82 @@
-# React + TypeScript + Vite
+# Leegality — Product Catalogue
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive product listing and detail app built with React, TypeScript, and Tailwind CSS, consuming the [DummyJSON](https://dummyjson.com) public API.
 
-Currently, two official plugins are available:
+**GitHub Repository:** https://github.com/sxhil296/Leegality-FrontEnd-Engineer-Exercise
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live Demo:** https://leegality-front-end-engineer-exerci.vercel.app/
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Features
 
-Note: This will impact Vite dev & build performances.
+- Product listing with a responsive grid (2 → 3 → 4 columns)
+- Filter by category, brand (multi-select), and price range
+- Client-side pagination (8 products per page)
+- Product detail page with image gallery, dot pagination, and reviews
+- Skeleton loading states and error handling
+- All filters and page state persisted in URL query params (shareable / back-button safe)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Setup Instructions
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Prerequisites:** Node.js ≥ 18
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# 1. Clone the repository
+git clone git@github.com:sxhil296/Leegality-FrontEnd-Engineer-Exercise.git
+cd Leegality-FrontEnd-Engineer-Exercise
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open `http://localhost:5173` in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Build for production
+npm run build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Preview the production build locally
+npm run preview
 ```
+
+---
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Header.tsx            # Top nav bar
+│   ├── FilterSidebar.tsx     # Search + category / brand / price filters
+│   ├── ProductCard.tsx       # Card used in the listing grid
+│   ├── ProductCardSkeleton.tsx
+│   ├── ImageGallery.tsx      # Image carousel with dot pagination + thumbnails
+│   ├── StarRow.tsx           # Reusable star rating display
+│   └── Pagination.tsx        # Page controls
+├── hooks/
+│   ├── useProducts.ts        # Fetch, filter, and paginate products
+│   └── useCategories.ts      # Fetch category list
+├── pages/
+│   ├── ProductListingPage.tsx
+│   └── ProductDetailPage.tsx
+└── types/
+    └── product.ts            # Full DummyJSON product type definitions
+```
+
+---
+
+## Assumptions Made
+
+- **DummyJSON as the data source.** The API does not support server-side filtering by brand or price, so all products in a category are fetched once (`limit=0`) and filtered client-side.
+- **No authentication required.** The app is fully public with no login flow.
+- **8 products per page** was chosen as a reasonable grid size that balances load time and density across breakpoints.
+- **URL as the single source of truth** for all filter and pagination state — no external state manager was considered necessary given the scope.
+- **No cart or checkout functionality** was in scope; the detail page is read-only.
+
+---

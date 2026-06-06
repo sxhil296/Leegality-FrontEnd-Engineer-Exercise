@@ -1,10 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import ProductListingPage from "./pages/ProductListingPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+
 function App() {
   return (
-    <>
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-4xl font-bold">Hello, World!</h1>
+    <BrowserRouter>
+      <div className="min-h-screen">
+        <Header />
+        <Routes>
+          <Route path="/" element={<ProductListingPage />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
+        </Routes>
       </div>
-    </>
+    </BrowserRouter>
   );
 }
 
