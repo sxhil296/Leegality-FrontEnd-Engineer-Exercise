@@ -20,7 +20,7 @@ export default function ProductDetailPage() {
     if (!id) return;
     setLoading(true);
     setError(null);
-    fetch(`https://dummyjson.com/products/${id}`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${id}`)
       .then((r) => {
         if (!r.ok) throw new Error("Not found");
         return r.json();

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Product } from '../types/product';
 
-const BASE = 'https://dummyjson.com';
+const BASE = import.meta.env.VITE_API_BASE_URL;
 export const PAGE_SIZE = 8;
 
 interface UseProductsResult {

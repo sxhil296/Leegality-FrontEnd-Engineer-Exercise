@@ -6,7 +6,7 @@ export function useCategories() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products/categories')
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/products/categories`)
       .then(r => r.json())
       .then(data => {
         setCategories(data);

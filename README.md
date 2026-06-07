@@ -1,4 +1,4 @@
-# Leegality — Product Catalogue
+# Leegality - FrontEnd Engineer Exercise (Product Catalogue)
 
 A responsive product listing and detail app built with React, TypeScript, and Tailwind CSS, consuming the [DummyJSON](https://dummyjson.com) public API.
 
@@ -52,21 +52,27 @@ npm run preview
 ```
 src/
 ├── components/
-│   ├── Header.tsx            # Top nav bar
-│   ├── FilterSidebar.tsx     # Search + category / brand / price filters
-│   ├── ProductCard.tsx       # Card used in the listing grid
+│   ├── Button.tsx
+│   ├── ErrorMessage.tsx
+│   ├── FilterSidebar.tsx
+│   ├── Header.tsx
+│   ├── ImageGallery.tsx
+│   ├── NoProductsFound.tsx
+│   ├── Pagination.tsx
+│   ├── ProductCard.tsx
 │   ├── ProductCardSkeleton.tsx
-│   ├── ImageGallery.tsx      # Image carousel with dot pagination + thumbnails
-│   ├── StarRow.tsx           # Reusable star rating display
-│   └── Pagination.tsx        # Page controls
+│   ├── ProductDetailSkeleton.tsx
+│   ├── ReviewCard.tsx
+│   └── StarRow.tsx
 ├── hooks/
-│   ├── useProducts.ts        # Fetch, filter, and paginate products
-│   └── useCategories.ts      # Fetch category list
+│   ├── useCategories.ts
+│   └── useProducts.ts
 ├── pages/
-│   ├── ProductListingPage.tsx
-│   └── ProductDetailPage.tsx
+│   ├── NotFoundPage.tsx
+│   ├── ProductDetailPage.tsx
+│   └── ProductListingPage.tsx
 └── types/
-    └── product.ts            # Full DummyJSON product type definitions
+    └── product.ts
 ```
 
 ---
@@ -76,7 +82,7 @@ src/
 - **DummyJSON as the data source.** The API does not support server-side filtering by brand or price, so all products in a category are fetched once (`limit=0`) and filtered client-side.
 - **No authentication required.** The app is fully public with no login flow.
 - **8 products per page** was chosen as a reasonable grid size that balances load time and density across breakpoints.
-- **URL as the single source of truth** for all filter and pagination state — no external state manager was considered necessary given the scope.
+- **URL as the single source of truth** for all filter and pagination state, no external state manager was considered necessary given the scope.
 - **No cart or checkout functionality** was in scope; the detail page is read-only.
 
 ---

@@ -75,10 +75,19 @@ export default function ProductListingPage() {
 
   const activeFilterCount = [
     category,
+    search,
     appliedMin !== "" ? "min" : "",
     appliedMax !== "" ? "max" : "",
     ...selectedBrands,
   ].filter(Boolean).length;
+
+  const handleReset = () => {
+    setMinPriceInput("");
+    setMaxPriceInput("");
+    setAppliedMin("");
+    setAppliedMax("");
+    setSearchParams(new URLSearchParams(), { replace: true });
+  };
 
   return (
     <div className=" flex">
@@ -102,6 +111,8 @@ export default function ProductListingPage() {
           brands={brands}
           selectedBrands={selectedBrands}
           onBrand={handleBrand}
+          onReset={handleReset}
+          hasActiveFilters={activeFilterCount > 0}
         />
       </div>
 

@@ -16,6 +16,8 @@ interface Props {
   brands: string[];
   selectedBrands: string[];
   onBrand: (brand: string) => void;
+  onReset: () => void;
+  hasActiveFilters: boolean;
 }
 
 export default function FilterSidebar({
@@ -32,9 +34,18 @@ export default function FilterSidebar({
   brands,
   selectedBrands,
   onBrand,
+  onReset,
+  hasActiveFilters,
 }: Props) {
   return (
-    <aside className="w-68 shrink-0 flex flex-col gap-5 bg-gray-100 px-8 py-6 border-right border-gray-200 min-h-[calc(100vh-64px)]">
+    <aside className="w-68 shrink-0 flex flex-col gap-5 bg-gray-100 px-8 py-6 border-right border-gray-200 h-[calc(100vh-64px)] overflow-y-auto sidebar-scroll sticky top-0">
+      {hasActiveFilters && (
+        <>
+          <Button variant="outline" size="sm" label="Reset Filters" onClick={onReset} className="w-full" />
+          <div className="h-px bg-gray-300 -mt-2" />
+        </>
+      )}
+
       {/* Search */}
       <div className="relative">
         <span className="absolute inset-y-0 left-2.5 flex items-center text-gray-400 pointer-events-none">
@@ -139,6 +150,7 @@ export default function FilterSidebar({
           </ul>
         </div>
       )}
+
     </aside>
   );
 }
