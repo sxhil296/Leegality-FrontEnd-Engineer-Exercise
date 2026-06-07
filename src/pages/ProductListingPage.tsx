@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SlidersHorizontal, X } from "lucide-react";
+import Button from "../components/Button";
 import FilterSidebar from "../components/FilterSidebar";
 import ProductCard from "../components/ProductCard";
 import Pagination from "../components/Pagination";
@@ -8,6 +9,7 @@ import { useProducts } from "../hooks/useProducts";
 import { useCategories } from "../hooks/useCategories";
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import ErrorMessage from "../components/ErrorMessage";
+import NoProductsFound from "../components/NoProductsFound";
 
 export default function ProductListingPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -103,25 +105,27 @@ export default function ProductListingPage() {
         />
       </div>
 
-      <div className="flex-1 min-w-0 flex flex-col gap-4 px-6 py-6">
+      <div className="flex-1 min-w-0 flex flex-col gap-4 px-6 py-6 min-h-[calc(100vh-64px)]">
         {/* Toolbar */}
         <div className="flex items-center gap-3">
-          <button
+          <Button
+            variant={showFilters ? "primary" : "outline"}
+            size="sm"
+            icon={showFilters ? <X size={14} /> : <SlidersHorizontal size={14} />}
+            iconPosition="left"
             onClick={() => setShowFilters(v => !v)}
-            className={`inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded border transition-colors ${
-              showFilters
-                ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-            }`}
+         
           >
-            {showFilters ? <X size={14} /> : <SlidersHorizontal size={14} />}
-            Filters
+            <div className="flex items-center gap-2 justify-center">
+                  Filters
             {!showFilters && activeFilterCount > 0 && (
-              <span className="ml-0.5 w-4 h-4 text-[10px] font-bold bg-blue-600 text-white rounded-full flex items-center justify-center">
+              <span className=" w-4 h-4 text-[10px] font-bold bg-blue-600 text-white rounded flex items-center justify-center">
                 {activeFilterCount}
               </span>
             )}
-          </button>
+            </div>
+        
+          </Button>
         </div>
 
         {/* Grid */}
@@ -134,7 +138,7 @@ export default function ProductListingPage() {
         ) : error ? (
           <ErrorMessage message={error} />
         ) : products.length === 0 ? (
-          <div className="flex items-center justify-center py-20 text-gray-400 text-sm">No products found.</div>
+          <NoProductsFound />
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.map(product => (
@@ -143,7 +147,9 @@ export default function ProductListingPage() {
           </div>
         )}
 
-        <Pagination page={page} totalPages={totalPages} onChange={handlePage} />
+        <div className="mt-auto">
+          <Pagination page={page} totalPages={totalPages} onChange={handlePage} />
+        </div>
       </div>
     </div>
   );

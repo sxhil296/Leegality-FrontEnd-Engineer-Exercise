@@ -14,12 +14,6 @@ export default function ProductDetailSkeleton() {
               <div key={i} className="w-8 h-8 bg-gray-200 rounded" />
             ))}
           </div>
-          {/* Thumbnails */}
-          <div className="flex gap-2">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="w-14 h-14 bg-gray-200 rounded shrink-0" />
-            ))}
-          </div>
         </div>
 
         {/* Right — info */}

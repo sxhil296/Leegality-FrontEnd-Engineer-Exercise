@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, Search, ShoppingCart, Globe, User } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Button from "./Button";
 
 export default function Header() {
   const [searchParams] = useSearchParams();
@@ -21,9 +22,7 @@ export default function Header() {
 
   return (
     <header className="w-full bg-[#2d3748] px-12 h-16 flex items-center gap-4">
-      <button aria-label="Open menu" className="text-white hover:text-gray-300 transition-colors shrink-0 cursor-pointer">
-        <Menu size={22} />
-      </button>
+      <Button variant="ghost" icon={<Menu size={22} />} aria-label="Open menu" className="text-white shrink-0" />
 
       <div className="flex-1 flex justify-center">
         <form onSubmit={handleSubmit} className="relative w-full max-w-md">
@@ -41,15 +40,9 @@ export default function Header() {
       </div>
 
       <div className="flex items-center gap-6 shrink-0 text-white">
-        <button aria-label="Cart" className="hover:text-gray-300 transition-colors cursor-pointer">
-          <ShoppingCart size={22} />
-        </button>
-        <button aria-label="Language" className="hover:text-gray-300 transition-colors cursor-pointer">
-          <Globe size={22} />
-        </button>
-        <button aria-label="Profile" className="hover:text-gray-300 transition-colors cursor-pointer">
-          <User size={22} />
-        </button>
+        <Button variant="ghost" icon={<ShoppingCart size={22} />} aria-label="Cart" />
+        <Button variant="ghost" icon={<Globe size={22} />} aria-label="Language" />
+        <Button variant="ghost" icon={<User size={22} />} aria-label="Profile" />
       </div>
     </header>
   );

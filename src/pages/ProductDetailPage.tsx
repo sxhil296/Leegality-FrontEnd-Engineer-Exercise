@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ChevronLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Product } from "../types/product";
 import StarRow from "../components/StarRow";
 import ImageGallery from "../components/ImageGallery";
 import ProductDetailSkeleton from "../components/ProductDetailSkeleton";
 import ReviewCard from "../components/ReviewCard";
 import ErrorMessage from "../components/ErrorMessage";
+import Button from "../components/Button";
 
 export default function ProductDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -50,12 +51,15 @@ export default function ProductDetailPage() {
 
   return (
     <div className=" px-6 py-6">
-      <button
+      <Button
+        variant="outline"
+        size="sm"
+        label="Back"
+        icon={<ArrowLeft size={14} />}
+        iconPosition="left"
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 mb-6 border border-gray-300 rounded px-3 py-1.5 hover:bg-gray-50 transition-colors bg-white cursor-pointer"
-      >
-        <ChevronLeft size={14} /> Back
-      </button>
+        className="mb-6"
+      />
 
       <div className="bg-white rounded-xl p-8 flex flex-col md:flex-row gap-6">
         <div className="w-full max-w-1/2">

@@ -1,6 +1,6 @@
 import type { ReactNode, ButtonHTMLAttributes } from "react";
 
-type Variant = "primary"  | "outline"
+type Variant = "primary" | "outline" | "ghost"
 type Size = "xs" | "sm" | "md" | "lg";
 type IconPosition = "left" | "right";
 
@@ -16,10 +16,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<Variant, string> = {
-  primary:
-    "bg-blue-600 text-white hover:bg-blue-700 border border-transparent",
-  outline:
-    "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50",
+  primary: "bg-blue-600 text-white hover:bg-blue-700 border border-transparent",
+  outline: "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50",
+  ghost: "bg-transparent text-current border border-transparent hover:opacity-70",
 };
 
 const sizeStyles: Record<Size, string> = {
