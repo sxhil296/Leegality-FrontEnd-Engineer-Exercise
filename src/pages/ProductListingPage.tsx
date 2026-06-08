@@ -90,11 +90,21 @@ export default function ProductListingPage() {
   };
 
   return (
-    <div className=" flex">
-      {/* Filter sidebar — animated slide in/out */}
+    <div className="flex">
+      {/* Backdrop — mobile only */}
+      {showFilters && (
+        <div
+          className="fixed inset-0 z-30 bg-black/40 md:hidden"
+          onClick={() => setShowFilters(false)}
+        />
+      )}
+
+      {/* Filter sidebar — full-width overlay on mobile, inline slide on desktop */}
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          showFilters ? "w-68 opacity-100" : "w-0 opacity-0"
+        className={`fixed top-16 bottom-0 left-0 z-40 w-full overflow-hidden transition-all duration-300 ease-in-out md:relative md:top-auto md:bottom-auto md:z-auto ${
+          showFilters
+            ? "translate-x-0 md:w-68 md:opacity-100"
+            : "-translate-x-full md:translate-x-0 md:w-0 md:opacity-0"
         }`}
       >
         <FilterSidebar
@@ -116,7 +126,7 @@ export default function ProductListingPage() {
         />
       </div>
 
-      <div className="flex-1 min-w-0 flex flex-col gap-4 px-6 py-6 min-h-[calc(100vh-64px)]">
+      <div className="flex-1 min-w-0 flex flex-col gap-4 px-4 sm:px-6 py-6 min-h-[calc(100vh-64px)]">
         {/* Toolbar */}
         <div className="flex items-center gap-3">
           <Button
@@ -151,7 +161,7 @@ export default function ProductListingPage() {
         ) : products.length === 0 ? (
           <NoProductsFound />
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}

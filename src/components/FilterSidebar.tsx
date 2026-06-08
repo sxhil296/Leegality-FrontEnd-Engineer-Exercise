@@ -38,10 +38,16 @@ export default function FilterSidebar({
   hasActiveFilters,
 }: Props) {
   return (
-    <aside className="w-68 shrink-0 flex flex-col gap-5 bg-gray-100 px-8 py-6 border-right border-gray-200 h-[calc(100vh-64px)] overflow-y-auto sidebar-scroll sticky top-0">
+    <aside className="w-full flex flex-col gap-5 bg-gray-100 px-6 md:px-8 py-6 border-right border-gray-200 h-full md:h-[calc(100vh-64px)] overflow-y-auto sidebar-scroll md:sticky md:top-0">
       {hasActiveFilters && (
         <>
-          <Button variant="outline" size="sm" label="Reset Filters" onClick={onReset} className="w-full" />
+          <Button
+            variant="outline"
+            size="sm"
+            label="Reset Filters"
+            onClick={onReset}
+            className="w-full"
+          />
           <div className="h-px bg-gray-300 -mt-2" />
         </>
       )}
@@ -95,7 +101,7 @@ export default function FilterSidebar({
         </ul>
       </div>
 
-      <div className="h-px bg-gray-300 my-2" />
+      <div className="h-px bg-gray-300 my-1  md:my-2" />
 
       {/* Price Range */}
       <div>
@@ -128,7 +134,7 @@ export default function FilterSidebar({
         />
       </div>
 
-      <div className="h-px bg-gray-300 my-2" />
+      <div className="h-px bg-gray-400 my-1  md:my-2" />
       {/* Brands */}
       {brands.length > 0 && (
         <div>
@@ -150,7 +156,6 @@ export default function FilterSidebar({
           </ul>
         </div>
       )}
-
     </aside>
   );
 }

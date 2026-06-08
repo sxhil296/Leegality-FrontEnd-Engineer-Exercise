@@ -1,13 +1,13 @@
 export default function ProductDetailSkeleton() {
   return (
-    <div className="px-6 py-6 animate-pulse">
+    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto animate-pulse">
       {/* Back button */}
       <div className="h-8 w-20 bg-gray-200 rounded mb-6" />
 
-      <div className="bg-white rounded-xl p-8 flex flex-col md:flex-row gap-6">
+      <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6">
         {/* Left — image gallery */}
-        <div className="w-full max-w-1/2 flex flex-col gap-3">
-          <div className="h-150 bg-gray-200 rounded-lg" />
+        <div className="w-full md:w-1/2 flex flex-col gap-3">
+          <div className="h-64 sm:h-96 md:h-150 bg-gray-200 rounded-lg" />
           {/* Pagination */}
           <div className="flex items-center justify-center gap-1.5 pt-4">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -17,7 +17,7 @@ export default function ProductDetailSkeleton() {
         </div>
 
         {/* Right — info */}
-        <div className="flex-1 flex flex-col gap-4 w-full max-w-1/2 px-6 py-4 border-l border-gray-200">
+        <div className="flex-1 flex flex-col gap-4 w-full md:border-l border-gray-200 md:px-6 py-4">
           {/* Title */}
           <div className="h-7 bg-gray-200 rounded w-2/3" />
 

@@ -12,7 +12,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
 
   return (
     <div className="flex flex-col gap-3 shrink-0 w-full">
-      <div className="flex items-center justify-center h-150 bg-gray-50 rounded-lg overflow-hidden">
+      <div className="flex items-center justify-center h-64 sm:h-96 md:h-150 bg-gray-50 rounded-lg overflow-hidden">
         <img
           src={images[active]}
           alt={`${title} ${active + 1}`}

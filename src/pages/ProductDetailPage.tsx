@@ -50,7 +50,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className=" px-6 py-6">
+    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <Button
         variant="outline"
         size="sm"
@@ -61,17 +61,17 @@ export default function ProductDetailPage() {
         className="mb-6"
       />
 
-      <div className="bg-white rounded-xl p-8 flex flex-col md:flex-row gap-6">
-        <div className="w-full max-w-1/2">
+      <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6">
+        <div className="w-full md:w-1/2">
           <ImageGallery images={product.images} title={product.title} />
         </div>
 
         {/* Info */}
-        <div className="flex-1 flex flex-col gap-4 w-full max-w-1/2 px-6 py-4 border-l border-gray-400">
-          <h1 className="text-2xl font-bold text-gray-900">{product.title}</h1>
+        <div className="flex-1 flex flex-col gap-4 w-full md:border-l border-gray-400 md:px-6 py-4">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{product.title}</h1>
 
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="text-2xl font-bold text-gray-900">
+            <span className="text-xl sm:text-2xl font-bold text-gray-900">
               ${product.price}
             </span>
             <StarRow rating={product.rating} />
@@ -91,7 +91,7 @@ export default function ProductDetailPage() {
               <span className="font-semibold text-lg text-gray-800">
                 Category:{" "}
               </span>
-              <span className="text-base text-gray-700  capitalize">
+              <span className="text-base text-gray-700 capitalize">
                 {product.category}
               </span>
             </p>
